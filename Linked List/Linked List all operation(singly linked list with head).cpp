@@ -127,6 +127,40 @@ LL *reverseList(LL *head)    // O(N)
     }
     return prev;
 }
+/*
+// reverse list using recursion
+LL *reverseList(LL *head)
+{
+    if(!head || !head->next) return head;
+
+    LL *reversedListHead = reverseList(head->next);
+    head->next->next = head;    // while returning (from bottom to up) , 2nd node from last will be head
+    head->next = NULL;
+    return reversedListHead;
+}
+*/
+
+/* Reverses the linked list in groups of particular size and
+returns the pointer to the new head node. */
+LL *reverseListInGroup(LL *head, int groupSize)
+{
+    LL *curr = head, *prev = NULL, *nextNode = NULL;
+    int count = 0;
+    while(curr && count<groupSize)
+    {
+        nextNode = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextNode;
+        count++;
+    }
+    /* nextNode is now a pointer to (groupSize+1)th node.
+    Recursively call for the list starting from current.
+    And make rest of the list as next of first node */
+    if(nextNode) head->next = reverseListInGroup(nextNode, groupSize);
+    return prev;
+}
+
 void printList(LL *head)
 {
     if(!head)
@@ -154,9 +188,11 @@ void showAllOperation()
     cout<<"5. Delete first occurrence of a value"<<endl;
     cout<<"6. Delete all occurrences of a value"<<endl;
     cout<<"7. Reverse the list"<<endl;
-    cout<<"8. Terminate"<<endl;
+    cout<<"8. Reverse the list in group of given size"<<endl;
+    cout<<"9. Terminate"<<endl;
     cout<<"---------------------------------"<<endl;
 }
+
 int main()
 {
     int operationNumber, value;
@@ -200,6 +236,13 @@ int main()
         else if(operationNumber==7)
         {
             head = reverseList(head);
+        }
+        else if(operationNumber==8)
+        {
+            int groupSize;
+            cout<<"Give groupSize: ";
+            cin>>groupSize;
+            head = reverseListInGroup(head, groupSize);
         }
         else
         {
