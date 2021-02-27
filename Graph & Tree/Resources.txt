@@ -1,1 +1,10 @@
-
+1. Heap
+Iterative Approach
+https://levelup.gitconnected.com/heap-sort-algorithm-101-dec2aefb0b11
+Recursive Approach
+https://www.programiz.com/dsa/heap-sort
+https://www.mygreatlearning.com/blog/heap-sort/
+https://www.techiedelight.com/min-heap-max-heap-implementation-c/
+https://www.codesdope.com/course/algorithms-heapsort/
+https://www.hackerearth.com/practice/data-structures/trees/heapspriority-queues/tutorial/
+https://afteracademy.com/blog/operations-on-heaps
