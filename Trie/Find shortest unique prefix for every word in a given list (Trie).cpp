@@ -22,7 +22,7 @@ typedef struct Trie
         visCount = 0;
         for(int i=0; i<26; i++) child[i] = NULL;
     }
-}Trie_Node;
+} Trie_Node;
 
 void _insertIntoTrie(Trie_Node *root, string str)
 {
@@ -59,20 +59,19 @@ void _getShortestUniquePrefix(Trie_Node *root, char output[], int outputSz)
 
 int main()
 {
-	int N, testCase;
-	string strArr[] = {"zebra", "dog", "duck", "dove"};
-	int sz = sizeof(strArr)/sizeof(strArr[0]);
+    int N, testCase;
+    string strArr[] = {"zebra", "dog", "duck", "dove"};
+    int sz = sizeof(strArr)/sizeof(strArr[0]);
 
-	Trie_Node *root = new Trie();
+    Trie_Node *root = new Trie();
 
-	for(int i=0; i<sz; i++)
+    for(int i=0; i<sz; i++)
     {
-        //cout<<strArr[i]<<endl;
         _insertIntoTrie(root, strArr[i]);
     }
 
     char prefix[100];
     _getShortestUniquePrefix(root, prefix, 0);
 
-	return 0;
+    return 0;
 }

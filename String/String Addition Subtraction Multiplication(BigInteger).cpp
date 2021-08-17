@@ -7,7 +7,7 @@ using namespace std;
 typedef struct
 {
     int digit[MX_LEN], len, sign;
-}BigInt;
+} BigInt;
 
 BigInt _toBigInt(char *s)
 {
@@ -15,24 +15,31 @@ BigInt _toBigInt(char *s)
     b.len = 0;
     int sLen = 0;
     while(s[sLen]) sLen++;
+
     for(int i=sLen-1; i>0; i--)
     {
         b.digit[b.len++] = s[i]-'0';    // storing digits of the number in reverse order
     }
-    if(s[0]=='-') b.sign = negative;
-    else b.sign = positive, b.digit[b.len++] = s[0]-'0';
+    if(s[0]=='-')
+        b.sign = negative;
+    else
+        b.sign = positive, b.digit[b.len++] = s[0]-'0';
 
     return b;
 }
 int _compare(BigInt a, BigInt b)    // returns -1 if a<b, 1 if a>b, 0 if a=b
 {
-    if(a.len<b.len) return -1;
-    if(a.len>b.len) return 1;
+    if(a.len<b.len)
+        return -1;
+    if(a.len>b.len)
+        return 1;
     for(int i=a.len-1; i>=0; i--)
     {
-        if(a.digit[i]>b.digit[i]) return 1;
+        if(a.digit[i]>b.digit[i])
+            return 1;
 
-        if(a.digit[i]<b.digit[i]) return -1;
+        if(a.digit[i]<b.digit[i])
+            return -1;
     }
     return 0;
 }
@@ -43,13 +50,16 @@ BigInt _addition(BigInt a, BigInt b)
     for(i=0; i<a.len || i<b.len; i++)
     {
         int sum = 0;
-        if(i<a.len) sum = a.digit[i];
-        if(i<b.len) sum += b.digit[i];
+        if(i<a.len)
+            sum = a.digit[i];
+        if(i<b.len)
+            sum += b.digit[i];
         sum += carry;
         result.digit[len++] = (sum%10);
         carry = (sum/10);
     }
-    if(carry) result.digit[len++] = carry;
+    if(carry)
+        result.digit[len++] = carry;
     result.len = len;
 
     return result;
@@ -62,15 +72,19 @@ BigInt _subtraction(BigInt a, BigInt b) // here a>=b
     {
         int d1 = 0, d2 = 0, diff = 0;
         d1 = a.digit[i];
-        if(i<b.len) d2 = b.digit[i];
+        if(i<b.len)
+            d2 = b.digit[i];
         d2 += carry;
         diff = d1-d2+10;
         result.digit[len++] = (diff%10);
-        if(d2>d1) carry = 1;
-		else carry = 0;
+        if(d2>d1)
+            carry = 1;
+        else
+            carry = 0;
     }
 
-    while(len>1 && result.digit[len-1]==0) len--;
+    while(len>1 && result.digit[len-1]==0)
+        len--;
     result.len = len;
 
     return result;
@@ -81,9 +95,11 @@ BigInt _getMultiplication(BigInt a, BigInt b)
     result.len = a.len+b.len;
     result.sign = positive;
 
-    if(a.sign!=b.sign) result.sign = negative;
+    if(a.sign!=b.sign)
+        result.sign = negative;
 
-    for(int i=0; i<result.len; i++) result.digit[i] = 0;
+    for(int i=0; i<result.len; i++)
+        result.digit[i] = 0;
 
     for(int i=0; i<a.len; i++)
     {
@@ -100,7 +116,8 @@ BigInt _getMultiplication(BigInt a, BigInt b)
         result.digit[i] = (s%10);
         carry = (s/10);
     }
-    while(result.len>1 && result.digit[result.len-1]==0) result.len--;
+    while(result.len>1 && result.digit[result.len-1]==0)
+        result.len--;
 
     return result;
 }
@@ -150,8 +167,10 @@ BigInt _getSubtraction(BigInt a, BigInt b)
 
 void _print(BigInt b)
 {
-    if(b.sign==negative) cout<<"-";
-    for(int i=b.len-1; i>=0; i--) cout<<b.digit[i];
+    if(b.sign==negative)
+        cout<<"-";
+    for(int i=b.len-1; i>=0; i--)
+        cout<<b.digit[i];
 }
 void _printSummation(BigInt n1, BigInt n2, BigInt result)
 {
