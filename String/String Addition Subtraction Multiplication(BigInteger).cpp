@@ -67,6 +67,7 @@ BigInt _subtraction(BigInt a, BigInt b) // here a>=b
         diff = d1-d2+10;
         result.digit[len++] = (diff%10);
         if(d2>d1) carry = 1;
+		else carry = 0;
     }
 
     while(len>1 && result.digit[len-1]==0) len--;
