@@ -46,7 +46,7 @@ void _deleteAllOccurance(list<pair<int, int>> &pairList)
 Remove all occurrence of a value if it's found in the list as a second value of every pair.
 */
 
-void _deleteAllOccuranceWithLambdaDunction(list<pair<int, int>> &pairList)
+void _deleteAllOccuranceUsingLambdaFunction(list<pair<int, int>> &pairList)
 {
     /// syntax -> pairList.remove_if(Lambda_expression);
 
