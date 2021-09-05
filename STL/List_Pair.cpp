@@ -24,6 +24,7 @@ void _takeInput(list<pair<int, int>> &pairList)
     pairList.push_back({3, 5});
 }
 
+
 int numberToBeDeleted;
 /*
 Remove all occurrence of a value if it's found in the list as a second value of every pair.
@@ -37,6 +38,28 @@ void _deleteAllOccurance(list<pair<int, int>> &pairList)
 {
     numberToBeDeleted = 2;
     pairList.remove_if(_remove);
+}
+
+
+/*
+(using Lambda Function)
+Remove all occurrence of a value if it's found in the list as a second value of every pair.
+*/
+
+void _deleteAllOccuranceWithLambdaDunction(list<pair<int, int>> &pairList)
+{
+    /// syntax -> pairList.remove_if(Lambda_expression);
+
+    numberToBeDeleted = 2;
+    pairList.remove_if
+    (
+                       // Lambda expression
+                       [] (const pair<int, int> &pii)
+                       {
+                           if( pii.second == numberToBeDeleted) return true;
+                           else return false;
+                       }
+    );
 }
 
 /*
@@ -80,7 +103,8 @@ int main()
 
     _printList(pairList);
 
-    _deleteAllOccurance(pairList);
+    //_deleteAllOccurance(pairList);
+    _deleteAllOccuranceWithLambdaDunction(pairList);
 
     _printList(pairList);
 
